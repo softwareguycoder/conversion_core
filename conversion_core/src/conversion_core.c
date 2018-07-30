@@ -5,10 +5,7 @@
  *      Author: bhart
  */
 
-#include <stdlib.h>
-#include <limits.h>
-#include <errno.h>
-
+#include "stdafx.h"
 #include "conversion_core.h"
 
 int char_to_long(const char* input, long* output) {
