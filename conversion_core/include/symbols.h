@@ -5,8 +5,8 @@
  *      Author: bhart
  */
 
-#ifndef __SYMBOLS_H__
-#define __SYMBOLS_H__
+#ifndef __CONVERSION_CORE_SYMBOLS_H__
+#define __CONVERSION_CORE_SYMBOLS_H__
 
 /* char_to_long */
 #define OK					0
@@ -18,4 +18,4 @@
 #define INVALID_BASE		-305
 #define UNSPECIFIED_ERROR	-306
 
-#endif /* __SYMBOLS_H__ */
+#endif /* __CONVERSION_CORE_SYMBOLS_H__ */
