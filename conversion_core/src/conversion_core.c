@@ -9,7 +9,7 @@
 #include "conversion_core.h"
 
 int StringToLong(const char* pszInput, long* plOutput) {
-	char	*pszEndingPtr = NULL; /* pointer to addtional chars */
+	char*	pszTail;
 	int 	nBase = 10; /* default to reading digits and interpreting as base 10 */
 	long 	lResult = 0; /* variable holding return */
 
@@ -17,28 +17,43 @@ int StringToLong(const char* pszInput, long* plOutput) {
 	errno = 0;
 
 	/* call to strtol assigning return to number */
-	lResult = strtol(pszInput, &pszEndingPtr, nBase);
+	lResult = strtol(pszInput, (char**)&pszTail, nBase);
 
 	/* test return to number and errno values */
-	if (pszInput == pszEndingPtr)
+	if (strcmp(pszInput, pszTail) == 0) {
+		//free(pszTail);
 		return INVALID_CHARS;
-	else if (errno == ERANGE && lResult == LONG_MIN)
+	}
+	else if (errno == ERANGE && lResult == LONG_MIN) {
+		//free(pszTail);
 		return BUFFER_UNDERFLOW;
-	else if (errno == ERANGE && lResult == LONG_MAX)
+	}
+	else if (errno == ERANGE && lResult == LONG_MAX) {
+		//free(pszTail);
 		return BUFFER_OVERFLOW;
-	else if (errno == EINVAL) /* not all c99 implementations; gcc ok */
+	}
+	else if (errno == EINVAL) {/* not all c99 implementations; gcc ok */
+		//free(pszTail);
 		return INVALID_BASE;
-	else if (errno != 0 && lResult == 0)
+	}
+	else if (errno != 0 && lResult == 0) {
+		//free(pszTail);
 		return UNSPECIFIED_ERROR;
-	else if (errno == 0 && pszInput && !*pszEndingPtr) {
+	}
+	else if (errno == 0 && pszTail[0] == '\0') {
 		/* result is valid and represents all characters read */
 		*plOutput = lResult;
+		//free(pszTail);
+
 		return EXACTLY_CORRECT;
-	} else if (errno == 0 && pszInput && *pszEndingPtr != 0) {
+	} else if (errno == 0 && pszInput && strlen(pszTail) > 0) {
 		/* result is valid but the string contained non-digit characters too */
 		*plOutput = lResult;
+		//free(pszTail);
 		return OK;
 	}
+
+	//free(pszTail);
 
 	return UNSPECIFIED_ERROR;
 }

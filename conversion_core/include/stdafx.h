@@ -11,5 +11,6 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <errno.h>
+#include <string.h>
 
 #endif /* __STDAFX_H__ */
