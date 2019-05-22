@@ -3,6 +3,7 @@
 	<name>conversion_core</name>
 	<comment></comment>
 	<projects>
+		<project>api_core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
