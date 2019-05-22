@@ -13,4 +13,6 @@
 #include <errno.h>
 #include <string.h>
 
+#include <../../api_core/api_core/include/api_core.h>
+
 #endif /* __STDAFX_H__ */
