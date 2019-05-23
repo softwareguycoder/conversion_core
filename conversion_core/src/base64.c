@@ -181,6 +181,9 @@ int GetBase64DecodedDataSize(const char *pszInputText)
   }
 
   nInputLength = strlen(pszInputText);
+  if (pszInputText[nInputLength - 1] == '\n') {
+    nInputLength--;
+  }
   nResult = nInputLength / 4 * 3;
 
   for (int i = nInputLength; i-- > 0;) {
