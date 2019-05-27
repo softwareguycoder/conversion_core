@@ -9,6 +9,7 @@
 #define __STDAFX_H__
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <limits.h>
 #include <errno.h>
 #include <string.h>
