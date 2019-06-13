@@ -14,7 +14,10 @@
  * to be placed.
  * @param nOutputSize Size of the storage location that will hold the
  * decoded bytes.
- * @return Nonzero if the operation was successful.
+ * @return TRUE if the operation was successful; FALSE otherwise.
+ * @remarks This function will return FALSE if the decoding operation could
+ * not be completed. This is most likely due to either nonexistent input, or
+ * input that is not well-formed Base64-encoded text.
  */
 BOOL Base64Decode(const char *pszEncodedBytes,
     unsigned char *pszDecodedBytes, int nOutputSize);

@@ -79,14 +79,14 @@ BOOL Base64Decode(const char *pszEncodedBytes,
     return FALSE;
   }
 
-  nEncodedBytes = strlen(pszEncodedBytes);
+  nEncodedBytes = strlen(pszEncodedBytes) + 1;
   if (nOutputSize < GetBase64DecodedDataSize(pszEncodedBytes)
       || nEncodedBytes % 4 != 0)
-    return FALSE;
+    return FALSE; // decoding failed
 
   for (int i = 0; i < nEncodedBytes; i++) {
     if (!IsValidBase64Char(pszEncodedBytes[i])) {
-      return FALSE;
+      return FALSE;   // decoding failed
     }
   }
 
@@ -216,14 +216,6 @@ int GetBase64EncodedDataSize(int nInputLength)
   nResult *= 4;
 
   return nResult;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// IsValidBase64EncodedString function
-
-BOOL IsValidBase64EncodedString(const char* pszEncodedBytes) {
-  // TODO: Add implementation code here
-  return FALSE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
