@@ -65,10 +65,13 @@ int GetBase64EncodedDataSize(int nInputLength);
  * @brief Determines whether the character buffer passed actually consists
  * of valid Base64-encoded text or not.
  * @param pszEncodedBytes Buffer of (signed) characters to check.
+ * @param nEncodedBytes Number of (supposedly-)encoded characters being
+ * passed to this function.
  * @return TRUE if the text in pszEncodedBytes is indeed Base64-encoded;
  * FALSE otherwise.
  */
-BOOL IsValidBase64EncodedString(const char* pszEncodedBytes);
+BOOL IsValidBase64EncodedString(const char* pszEncodedBytes,
+    int nEncodedBytes);
 
 
 #endif //__BASE64_H__
