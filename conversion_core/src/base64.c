@@ -219,3 +219,12 @@ int GetBase64EncodedDataSize(int nInputLength)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// IsValidBase64EncodedString function
+
+BOOL IsValidBase64EncodedString(const char* pszEncodedBytes,
+    int nEncodedBytes) {
+  // TODO: Add implementation code here
+  return FALSE;
+}
+
+///////////////////////////////////////////////////////////////////////////////
