@@ -7,16 +7,6 @@
 #include <../../api_core/api_core/include/api_core.h>
 
 /**
- * @name IsValidBase64EncodedString
- * @brief Determines whether the character buffer passed actually consists
- * of valid Base64-encoded text or not.
- * @param pszEncodedBytes Buffer of (signed) characters to check.
- * @return TRUE if the text in pszEncodedBytes is indeed Base64-encoded;
- * FALSE otherwise.
- */
-BOOL IsValidBase64EncodedString(const char* pszEncodedBytes);
-
-/**
  * @name Base64Decode
  * @brief Decodes a string using the Base64 decoding.
  * @param pszEncodedBytes Address of a string of bytes that need decoding.
@@ -69,5 +59,16 @@ int GetBase64DecodedDataSize(const char *pszInputText);
  * been Base64-encoded.
  */
 int GetBase64EncodedDataSize(int nInputLength);
+
+/**
+ * @name IsValidBase64EncodedString
+ * @brief Determines whether the character buffer passed actually consists
+ * of valid Base64-encoded text or not.
+ * @param pszEncodedBytes Buffer of (signed) characters to check.
+ * @return TRUE if the text in pszEncodedBytes is indeed Base64-encoded;
+ * FALSE otherwise.
+ */
+BOOL IsValidBase64EncodedString(const char* pszEncodedBytes);
+
 
 #endif //__BASE64_H__
