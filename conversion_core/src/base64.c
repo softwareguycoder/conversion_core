@@ -79,12 +79,13 @@ BOOL Base64Decode(const char *pszEncodedBytes,
     return FALSE;
   }
 
-  nEncodedBytes = strlen(pszEncodedBytes) + 1;
+  nEncodedBytes = strlen(pszEncodedBytes) + 1;  // plus terminating <LF>
+  const int ACTUAL_ENCODED_BYTE_COUNT = nEncodedBytes - 1;
   if (nOutputSize < GetBase64DecodedDataSize(pszEncodedBytes)
-      || nEncodedBytes % 4 != 0)
+      || ACTUAL_ENCODED_BYTE_COUNT % 4 != 0)
     return FALSE; // decoding failed
 
-  for (int i = 0; i < nEncodedBytes; i++) {
+  for (int i = 0; i < ACTUAL_ENCODED_BYTE_COUNT; i++) {
     if (!IsValidBase64Char(pszEncodedBytes[i])) {
       return FALSE;   // decoding failed
     }
@@ -93,7 +94,7 @@ BOOL Base64Decode(const char *pszEncodedBytes,
   int* b64invs = NULL;
   GenerateBase64DecodeTable(&b64invs, 80);
 
-  for (int i = 0, j = 0; i < nEncodedBytes; i += 4, j += 3) {
+  for (int i = 0, j = 0; i < ACTUAL_ENCODED_BYTE_COUNT; i += 4, j += 3) {
     nCurVal = b64invs[pszEncodedBytes[i] - 43];
     nCurVal = (nCurVal << 6) | b64invs[pszEncodedBytes[i + 1] - 43];
     nCurVal =
